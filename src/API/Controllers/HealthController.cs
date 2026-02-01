@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
 public class HealthController : ControllerBase
 {
-    [HttpGet]
+    [HttpGet("api/health")]
+    [HttpGet("health")]
     public IActionResult Get()
     {
         return Ok(new { status = "healthy", timestamp = DateTime.UtcNow });

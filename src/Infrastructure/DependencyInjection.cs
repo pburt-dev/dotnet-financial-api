@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace Infrastructure;
 
@@ -37,6 +38,21 @@ public static class DependencyInjection
         services.AddMemoryCache();
         services.AddSingleton<IIdempotencyService, InMemoryIdempotencyService>();
 
+        // Database initializer
+        services.AddScoped<ApplicationDbContextInitializer>();
+
         return services;
+    }
+
+    /// <summary>
+    /// Initializes the database by applying migrations and seeding data.
+    /// </summary>
+    public static async Task InitializeDatabaseAsync(this IServiceProvider services)
+    {
+        using var scope = services.CreateScope();
+        var initializer = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
+
+        await initializer.InitializeAsync();
+        await initializer.SeedAsync();
     }
 }

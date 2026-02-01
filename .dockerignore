@@ -1,0 +1,41 @@
+# Build results
+**/bin/
+**/obj/
+**/out/
+
+# IDE files
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Test results
+**/TestResults/
+**/coverage/
+
+# NuGet
+**/packages/
+*.nupkg
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+!README.md
+
+# Docker
+Dockerfile*
+docker-compose*
+.docker/
+
+# Claude
+.claude/
+
+# Misc
+*.log
+*.tmp

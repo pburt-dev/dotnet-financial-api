@@ -28,6 +28,12 @@ builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
 
 var app = builder.Build();
 
+// Initialize database (apply migrations and seed data)
+if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Docker"))
+{
+    await app.Services.InitializeDatabaseAsync();
+}
+
 // Configure the HTTP request pipeline
 app.UseGlobalExceptionMiddleware();
 

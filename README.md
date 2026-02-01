@@ -119,46 +119,37 @@ sequenceDiagram
 
 ### Running with Docker
 
-1. **Build and run with Docker Compose:**
+The project includes a complete Docker setup with SQL Server.
+
+1. **Start the application with Docker Compose:**
 
 ```bash
-# Build the Docker image
-docker build -t financial-api -f src/API/Dockerfile .
-
-# Run with SQL Server
+# Build and start all services
 docker-compose up -d
+
+# View logs
+docker-compose logs -f api
+
+# Stop all services
+docker-compose down
+
+# Stop and remove volumes (clean slate)
+docker-compose down -v
 ```
 
-2. **Docker Compose configuration** (create `docker-compose.yml`):
+2. **Access the API:**
+   - API: http://localhost:5000
+   - Swagger UI: http://localhost:5000/swagger
+   - Health Check: http://localhost:5000/health
 
-```yaml
-version: '3.8'
-services:
-  api:
-    build:
-      context: .
-      dockerfile: src/API/Dockerfile
-    ports:
-      - "5169:8080"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=FinancialDb;User Id=sa;Password=Your_password123;TrustServerCertificate=True
-    depends_on:
-      - sqlserver
+3. **Sample Data:**
 
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Your_password123
-    ports:
-      - "1433:1433"
-    volumes:
-      - sqlserver_data:/var/opt/mssql
+   The database is automatically seeded with sample accounts on first run:
+   - John Smith (Checking + Savings accounts)
+   - Jane Doe (Checking + Investment accounts)
+   - Acme Corporation (Business Checking)
 
-volumes:
-  sqlserver_data:
-```
+   Each account has sample deposits, withdrawals, and transactions for demonstration.
 
 ### Running Locally
 
