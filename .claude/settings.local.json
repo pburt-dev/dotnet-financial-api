@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet new:*)",
+      "Bash(dotnet add:*)",
+      "Bash(dotnet build:*)",
+      "Bash(dotnet test:*)",
+      "Bash(ls:*)",
+      "Bash(tree:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nImplement Financial Transaction API with Clean Architecture\n\nComplete implementation of a production-grade Financial Transaction API following\nClean Architecture principles with CQRS pattern using MediatR.\n\nDomain Layer:\n- Account and Transaction entities with proper encapsulation\n- Money value object with banker''s rounding \\(MidpointRounding.ToEven\\)\n- Domain events for account lifecycle and transactions\n- Custom domain exceptions for business rule violations\n\nApplication Layer:\n- CQRS commands/queries for accounts and transactions\n- FluentValidation for request validation\n- Pipeline behaviors for logging, validation, and exception handling\n- Idempotency support for safe transaction retries\n\nInfrastructure Layer:\n- EF Core 10 with SQL Server configuration\n- Repository implementations with proper audit tracking\n- In-memory idempotency service with caching\n\nAPI Layer:\n- RESTful controllers for accounts and transactions\n- Global exception middleware for consistent error responses\n- Swagger/OpenAPI documentation\n- Health check endpoint\n\nTest Coverage \\(186 tests\\):\n- Domain unit tests: 81 tests \\(Money, Account, Transaction\\)\n- Application unit tests: 73 tests \\(commands, queries, validators\\)\n- API integration tests: 32 tests with SQLite in-memory database\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push)",
+      "Bash(dir:*)",
+      "Bash(dotnet ef migrations add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
